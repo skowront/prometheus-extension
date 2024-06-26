@@ -134,6 +134,8 @@ public class PrometheusEventsSource implements AnalyticsEventsSource, Applicatio
 		StringBuffer buff = new StringBuffer();
 		buff.append("[");
 		
+		logr.debug("Building JSON for query. The json contents:" + json);
+			
 		JSONObject respObj = new JSONObject(json);
 		
 		JSONObject dataObj = respObj.getJSONObject("data");
