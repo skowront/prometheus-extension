@@ -114,8 +114,8 @@ public class AnalyticsEventsDriver implements Runnable, AnalyticsEventsPublisher
         resp = out.toString();
 		reader.close();
 		
-		logr.trace("Publish Events Response");
-		logr.trace(resp);
+		logr.info("Publish Events Response");
+		logr.info(resp);
 
 		HttpClientUtils.closeQuietly(response);
 		HttpClientUtils.closeQuietly(client);
@@ -142,8 +142,8 @@ public class AnalyticsEventsDriver implements Runnable, AnalyticsEventsPublisher
 		
 	    int statusCode = response.getStatusLine().getStatusCode();
 	    
-	    logr.trace(" - Checking for existing schema");
-	    logr.trace(" - Schema: " + this.analyticsEventsSource.getSchemaName() + " : HTTP Status: " + response.getStatusLine().getStatusCode());
+	    logr.info(" - Checking for existing schema");
+	    logr.info(" - Schema: " + this.analyticsEventsSource.getSchemaName() + " : HTTP Status: " + response.getStatusLine().getStatusCode());
 	    
 	    boolean exists = false;
 	    
@@ -214,8 +214,8 @@ public class AnalyticsEventsDriver implements Runnable, AnalyticsEventsPublisher
 	    
 	    CloseableHttpResponse response = client.execute(request);
 		
-	    logr.trace(" - Creating schema");
-	    logr.trace(" - Schema: " + this.analyticsEventsSource.getSchemaName() + " : HTTP Status: " + response.getStatusLine().getStatusCode());
+	    logr.info(" - Creating schema");
+	    logr.info(" - Schema: " + this.analyticsEventsSource.getSchemaName() + " : HTTP Status: " + response.getStatusLine().getStatusCode());
 	    
 		String resp = "";
         BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
@@ -228,8 +228,8 @@ public class AnalyticsEventsDriver implements Runnable, AnalyticsEventsPublisher
         resp = out.toString();
 		reader.close();
 		
-		logr.trace("Create Schema Response");
-		logr.trace(resp);
+		logr.info("Create Schema Response");
+		logr.info(resp);
 
 		HttpClientUtils.closeQuietly(response);
 		HttpClientUtils.closeQuietly(client);

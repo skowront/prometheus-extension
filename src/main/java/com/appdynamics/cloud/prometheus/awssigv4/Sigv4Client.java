@@ -47,9 +47,9 @@ public class Sigv4Client {
         headers.put("Authorization", authorization);
         String response = Sigv4HttpUtils.invokeHttpRequest(endpointUrl, "GET", headers, null);
         logr.carriageReturnTrace();
-        logr.trace("--------------------------------------------------------------------------------- Response content begin ---------");
-        logr.trace(response);
-        logr.trace("--------------------------------------------------------------------------------- Response content end -----------");
+        logr.info("--------------------------------------------------------------------------------- Response content begin ---------");
+        logr.info(response);
+        logr.info("--------------------------------------------------------------------------------- Response content end -----------");
         
         return response;
     }

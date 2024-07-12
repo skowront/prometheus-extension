@@ -117,7 +117,6 @@ public class PrometheusEventsSource implements AnalyticsEventsSource, Applicatio
 			
 			logr.debug("Executing PromQL Query = " + promQueries[qryCntr]);
 			String jsonPayload = this.buildJSONForQuery(this.executePromQuery(promQueries[qryCntr]));
-			logr.trace(jsonPayload);
 			publisher.publishEvents(jsonPayload);
 			
 			
@@ -260,7 +259,7 @@ public class PrometheusEventsSource implements AnalyticsEventsSource, Applicatio
 		}
 		
 		
-		logr.trace(queryResults.replaceAll("[\n\r]", ""));
+		logr.info(queryResults.replaceAll("[\n\r]", ""));
 		
 		return queryResults;
 	}
@@ -278,8 +277,8 @@ public class PrometheusEventsSource implements AnalyticsEventsSource, Applicatio
 
 	    CloseableHttpResponse response = client.execute(request);
 		
-	    logr.trace(" - Executing Query with No Auth");
-	    logr.trace(" - Query: " + promQl + " : HTTP Status: " + response.getStatusLine().getStatusCode());
+	    logr.info(" - Executing Query with No Auth");
+	    logr.info(" - Query: " + promQl + " : HTTP Status: " + response.getStatusLine().getStatusCode());
 	    
 		String resp = "";
         BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
@@ -292,8 +291,8 @@ public class PrometheusEventsSource implements AnalyticsEventsSource, Applicatio
         resp = out.toString();
 		reader.close();
 		
-		logr.trace(" - Query Response");
-		logr.trace(resp);
+		logr.info(" - Query Response");
+		logr.info(resp);
 
 		HttpClientUtils.closeQuietly(response);
 		HttpClientUtils.closeQuietly(client);
@@ -310,10 +309,10 @@ public class PrometheusEventsSource implements AnalyticsEventsSource, Applicatio
 		
 		logr.carriageReturnTrace();
 		logr.carriageReturnTrace();
-		logr.trace("****************************************************************************************************************************************************************************************");
-		logr.trace(" - Executing Query with AWS Sigv4 Auth");
-	    logr.trace(" - Query: " + promQl);
-	    logr.trace("****************************************************************************************************************************************************************************************");
+		logr.info("****************************************************************************************************************************************************************************************");
+		logr.info(" - Executing Query with AWS Sigv4 Auth");
+	    logr.info(" - Query: " + promQl);
+	    logr.info("****************************************************************************************************************************************************************************************");
 	    
 	    
 	    
